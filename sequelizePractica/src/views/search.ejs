@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head', { css:'style' } ) %> 
+<body>
+    <!-- header -->
+    <%- include('partials/header') %> 
+    <!-- /header --> 
+    <div class="col-12">
+        <h2 class="movies__title">Peliculas buscadas!</h2>
+    </div>
+    <div class="col-12">
+        <h2 class="movies__title">Ordenar por:</h2>
+    </div>
+    <!-- Mostrar Movies -->
+    <% moviesSearch.forEach(movieSearch => { %>
+        <section class="movie__box">
+            <a href="/movies/detail/<%= movieSearch.id %> ">
+                <article class="movie__box__data">
+                    <h2><%= movieSearch.title %></h2>
+                    <p>Rating: <%= movieSearch.rating %></p>
+                    <p>Premios: <%= movieSearch.awards %></p>
+                    <p>Fecha de estreno: <%= moment(moment.utc(movieSearch.release_date)).format('DD/MM/YYYY') %></p>
+                </article>
+            </a>
+        </section>
+    <% }) %>
+</body>
+</html>

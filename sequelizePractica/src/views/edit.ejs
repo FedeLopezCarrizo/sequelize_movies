@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head', { css:'style' } ) %> 
+<body>
+    <!-- header -->
+    <%- include('partials/header') %> 
+    <!-- /header --> 
+    <div class="col-12">
+        <h2>Estás editando: <%= movieToEdit.title %></h2>
+    </div>
+
+    <section class="section__movieCreate"> 
+        <form action="/movies/edit?_method=PUT" method="POST">
+            <div class="div__movieEdit">
+                <label for="title" class="form__label">Titulo de la pelicula:</label>
+                <input type="text" id="title" name="title" placeholder="Ej: Rescatando al soldado Ryan" class="form__input" value="<%= movieToEdit.title %>">
+            </div>
+            <div class="div__movieEdit">
+                <label for="rating" class="form__label">Rating:</label>
+                <input type="text" id="rating" name="rating" placeholder="Ej: 10" class="form__input" value="<%= movieToEdit.rating %>">
+            </div>
+            <div class="div__movieEdit">
+                <label for="awards" class="form__label">Premios:</label>
+                <input type="text" id="awards" name="awards" placeholder="Ej: 4" class="form__input" value="<%= movieToEdit.awards %>">
+            </div>
+            <div class="div__movieEdit">
+                <label for="release_date" class="form__label">Fecha de estreno:</label>
+                <input type="date" name="release_date" value="<%= moment(moment.utc(movieToEdit.release_date)).format('YYYY-MM-DD') %>">
+            </div>
+            <div class="div__movieEdit">
+                <label for="length" class="form__label">Duración:</label>
+                <input type="text" id="length" name="length" placeholder="Ej: 160" class="form__input" value="<%= movieToEdit.length %>">
+            </div>
+            <div class="div__movieEdit">
+                <label for="genre_id" class="form__label">Género:</label>
+                <select name="genre_id">
+                    <% generos.forEach(genero => { %> 
+                        <% if (movieToEdit.GenreId == genero.id) { %> 
+                            <option value="<%= genero.id %>" selected><%= genero.name %> </option>
+                        <% } else { %> 
+                            <option value="<%= genero.id %>"><%= genero.name %> </option>
+                        <% } %> 
+                    <% }) %>
+                </select>
+            </div>
+            <div class="div__movieEdit">
+                <label for="actors" class="form__label">Actores:</label>
+                <select name="actors" multiple>
+                    <% actores.forEach(actor => { %> 
+                        <% if (movieToEdit.actores.some(actorPelicula => actorPelicula.id == actor.id)) { %> 
+                            <option value="<%= actor.id %>" selected><%= actor.first_name %> <%= actor.last_name %> </option>
+                        <% } else { %> 
+                            <option value="<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %> </option>
+                        <% } %> 
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="div__buttonEdit">
+                <button type="submit" class="buy__now__button">Editar pelicula</button>
+            </div>
+        </form>
+    </section>    
+</body>
+</html>

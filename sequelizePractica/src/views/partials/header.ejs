@@ -1,0 +1,23 @@
+<header class="header__main">            
+    <!-- <a href="/"><img src="/images/banner.png" alt="logotipo" class="logo"></a> -->
+
+
+    <!-- busqueda -->
+    <form action="/movies/search" method="POST" class="search__form">
+        <select name="order">
+            <option value="title">Titulo</option>
+            <option value="rating">Rating</option>
+            <option value="awards">Awards</option>
+            <option value="release_date">Fecha de estreno</option>
+            <option value="length">Duracion</option>
+            <option value="genre_id">Genero</option>
+        </select>
+        <select name="desc_asc">
+            <option value="ASC">Ascendente</option>
+            <option value="DESC">Descendente</option>
+        </select>
+        <input type="text" name="keywords" placeholder="Busca la peli que te gusta..." class="input__search">
+        <button type="submit" class="search__form__button"><i class="fas fa-search"></i></button>
+    </form>
+   
+</header>

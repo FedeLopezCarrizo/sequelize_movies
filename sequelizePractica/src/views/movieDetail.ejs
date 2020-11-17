@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head', { css:'style' } ) %> 
+<body>
+    <!-- header -->
+    <%- include('partials/header') %> 
+    <!-- /header --> 
+    <div class="col-12">
+        <h2 class="movies__title">Detalle de la pelicula <%= movieDetail.title %></h2>
+        <p>Rating: <%= movieDetail.rating %></p>
+        <p>Premios: <%= movieDetail.awards %></p>
+        <p>Duración: <%= movieDetail.length %></p>
+        <p>Fecha de estreno: <%= moment(moment.utc(movieDetail.release_date)).format('DD/MM/YYYY') %></p>
+    </div>
+
+    <div class="div__buttonDelete">        
+        <form method="POST" action="/movies/delete/<%= movieDetail.id %>">
+            <button type="submit" class="delete__button">Eliminar pelicula</button>
+        </form>
+    </div>
+    <div class="div__buttonEdit">
+        <a href="/movies/edit/<%= movieDetail.id %>">Modificar pelicula</a>
+    </div>
+</body>
+</html>

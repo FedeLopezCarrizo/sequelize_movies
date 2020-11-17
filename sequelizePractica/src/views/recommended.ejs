@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head', { css:'style' } ) %> 
+<body>
+    <!-- header -->
+    <%- include('partials/header') %> 
+    <!-- /header --> 
+    <div class="col-12">
+        <h2 class="movies__title">Peliculas recomendadas!</h2>
+    </div>
+    <!-- Mostrar Movies -->
+    <% moviesRecommended.forEach(movieRecommended => { %>
+        <section class="movie__box">
+            <a href="/movies/detail/<%= movieRecommended.id %> ">
+                <article class="movie__box__data">
+                    <h2><%= movieRecommended.title %></h2>
+                    <p>Rating: <%= movieRecommended.rating %></p>
+                    <p>Premios: <%= movieRecommended.awards %></p>
+                    <p>Fecha de estreno: <%= moment(moment.utc(movieRecommended.release_date)).format('DD/MM/YYYY') %></p>
+                </article>
+            </a>
+        </section>
+    <% }) %>
+</body>
+</html>
